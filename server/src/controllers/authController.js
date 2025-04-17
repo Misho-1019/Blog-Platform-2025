@@ -23,6 +23,13 @@ authController.post('/login', async (req, res) => {
         console.log(error.message);
         //throw 404 error
     }
+
+    res.end();
+})
+
+authController.get('/logout', (req, res) => {
+    res.clearCookie('auth')
+    res.status(200).json({ message: 'Logout successfully!' })
 })
 
 export default authController;
