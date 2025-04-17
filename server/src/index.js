@@ -1,6 +1,8 @@
 import express from "express";
-import routes from "./routes.js";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+
+import routes from "./routes.js";
 
 const app = express();
 
@@ -17,6 +19,7 @@ try {
 const port = process.env.PORT || 3030;
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use(routes)
 
