@@ -1,9 +1,15 @@
+import Header from "./components/header/Header"
+import Home from "./components/home/Home"
 
 function App() {
 
     return (
         <div>
-            <h1>Simple Forms</h1>
+            <Header />
+
+            <main>
+                <Home />
+            </main>
         </div>
     )
 }
