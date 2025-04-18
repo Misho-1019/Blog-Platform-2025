@@ -1,26 +1,33 @@
 import { useActionState } from 'react';
 import styles from './Login.module.css';
+import { useLogin } from '../../api/authApi';
+import { useNavigate } from 'react-router';
 
 export default function Login({
     onLogin
 }) {
-    const loginHandler = (previousState, formData) => {
+    const { login } = useLogin()
+    const navigate = useNavigate()
+
+    const loginHandler = async (_, formData) => {
         const values = Object.fromEntries(formData)
 
-        onLogin(values.email)
+        const authData = await login(values.email, values.password)
 
-        return values;
+        onLogin(authData);
+
+        navigate('/')
     }
 
-    const [values, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' })
+    const [_, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' })
     return (
         <div className={styles.container}>
             <div className={styles.formBox}>
                 <h2>Login</h2>
-                <form>
+                <form action={loginAction}>
                     <input type="email" placeholder="Email" required />
                     <input type="password" placeholder="Password" required />
-                    <button type="submit">Log In</button>
+                    <button type="submit" disabled={isPending} >Log In</button>
                 </form>
             </div>
         </div>
