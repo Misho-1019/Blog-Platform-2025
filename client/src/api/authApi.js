@@ -2,6 +2,17 @@ import { useEffect, useRef } from "react"
 import request from "../utils/request"
 
 const baseUrl = 'http://localhost:3030/auth'
+
+export const useRegister = () => {
+    const register = (email, password) => {
+        request.post(`${baseUrl}/register`, { email, password })
+    }
+
+    return {
+        register,
+    }
+}
+
 export const useLogin = () => {
     const abortRef = useRef(new AbortController());
 
