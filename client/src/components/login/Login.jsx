@@ -1,11 +1,11 @@
-import { useActionState } from 'react';
+import { useActionState, useContext } from 'react';
 import styles from './Login.module.css';
 import { useLogin } from '../../api/authApi';
 import { useNavigate } from 'react-router';
+import { UserContext } from '../../context/UserContext';
 
-export default function Login({
-    onLogin
-}) {
+export default function Login() {
+    const { userLoginHandler } = useContext(UserContext)
     const { login } = useLogin()
     const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ export default function Login({
 
         const authData = await login(values.email, values.password)
 
-        onLogin(authData);
+        userLoginHandler(authData);
 
         navigate('/')
     }

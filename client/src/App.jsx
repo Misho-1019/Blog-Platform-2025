@@ -4,6 +4,7 @@ import Home from "./components/home/Home"
 import Login from "./components/login/Login"
 import Register from "./components/register/Register"
 import { useState } from "react"
+import { UserContext } from "./context/UserContext"
 
 function App() {
     const [authData, setAuthData] = useState({})
@@ -13,17 +14,19 @@ function App() {
     }
 
     return (
-        <div>
-            <Header />
+        <UserContext.Provider value={{...authData, userLoginHandler}}>
+            <div>
+                <Header />
 
-            <main>
-                <Routes>
-                    <Route path="/" element={ <Home />}/>
-                    <Route path="/login" element={ <Login onLogin={userLoginHandler} />}/>
-                    <Route path="/register" element={ <Register />}/>
-                </Routes>
-            </main>
-        </div>
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </main>
+            </div>
+        </UserContext.Provider>
     )
 }
 
