@@ -3,9 +3,6 @@ const request = async (method, url, data, options = {}) => {
         options.method = method
     }
 
-    console.log(data);
-    
-
     if (data) {
         options = {
             ...options,

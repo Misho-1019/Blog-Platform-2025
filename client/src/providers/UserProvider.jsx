@@ -13,7 +13,6 @@ export function UserProvider({
     const userLogoutHandler = () => {
         setAuthData({})
     }
-    console.log(authData);
     
 
     return (
