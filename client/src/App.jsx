@@ -6,20 +6,12 @@ import Register from "./components/register/Register"
 import { useState } from "react"
 import { UserContext } from "./context/UserContext"
 import Logout from "./components/logout/Logout"
+import { UserProvider } from "./providers/UserProvider"
 
 function App() {
-    const [authData, setAuthData] = useState({})
-
-    const userLoginHandler = (resultData) => {
-        setAuthData(resultData)
-    }
-
-    const userLogoutHandler = () => {
-        setAuthData({})
-    }
 
     return (
-        <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}}>
+        <UserProvider>
             <div>
                 <Header />
 
@@ -32,7 +24,7 @@ function App() {
                     </Routes>
                 </main>
             </div>
-        </UserContext.Provider>
+        </UserProvider>
     )
 }
 

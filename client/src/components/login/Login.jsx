@@ -25,8 +25,8 @@ export default function Login() {
             <div className={styles.formBox}>
                 <h2>Login</h2>
                 <form action={loginAction}>
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
+                    <input type="email" name='email' placeholder="Email" required />
+                    <input type="password" name='password' placeholder="Password" required />
                     <button type="submit" disabled={isPending} >Log In</button>
                 </form>
             </div>

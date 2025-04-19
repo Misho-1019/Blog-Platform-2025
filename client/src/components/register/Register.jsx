@@ -28,8 +28,8 @@ export default function Register() {
             <div className={styles.formBox}>
                 <h2>Register</h2>
                 <form onSubmit={registerHandler}>
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="password" name="password" placeholder="Password" required />
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
