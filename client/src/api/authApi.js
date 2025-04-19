@@ -5,9 +5,8 @@ import { UserContext } from "../context/UserContext"
 const baseUrl = 'http://localhost:3030/auth'
 
 export const useRegister = () => {
-    const register = (email, password) => {
+    const register = (email, password) => 
         request.post(`${baseUrl}/register`, { email, password })
-    }
 
     return {
         register,

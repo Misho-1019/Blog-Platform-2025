@@ -3,6 +3,9 @@ const request = async (method, url, data, options = {}) => {
         options.method = method
     }
 
+    console.log(data);
+    
+
     if (data) {
         options = {
             ...options,
@@ -13,6 +16,9 @@ const request = async (method, url, data, options = {}) => {
             body: JSON.stringify(data),
         }
     }
+    console.log(url);
+    console.log(options);
+    
 
     const response = await fetch(url, options)
     const responseContentType = response.headers.get('Content-Type')
