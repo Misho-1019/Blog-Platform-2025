@@ -6,9 +6,14 @@ const authController = Router();
 authController.post('/register', async (req, res) => {
     const authData = req.body;
 
-    await authService.register(authData)
-    
-    res.end();
+    try {
+        const token = await authService.register(authData)
+        res.cookie('auth', token, { httpOnly: true })
+
+        res.status(201).json({ token });
+    } catch (err) {
+        res.status(401).json({ message: err.message }).end()
+    }
 })
 
 authController.post('/login', async (req, res) => {
@@ -16,15 +21,14 @@ authController.post('/login', async (req, res) => {
 
     try {
         const token = await authService.login(email, password)
-        
+
         res.cookie('auth', token, { httpOnly: true })
-        
+
+        res.status(201).json({ token })
     } catch (error) {
         console.log(error.message);
-        //throw 404 error
+        res.status(401).json({ message: error.message }).end()
     }
-
-    res.end();
 })
 
 authController.get('/logout', (req, res) => {

@@ -5,6 +5,9 @@ import { UserContext } from '../../context/UserContext';
 
 export default function Header() {
     const { email } = useContext(UserContext)
+    console.log(email);
+    
+    
     return (
         <header className={styles.header}>
             <div className={styles.logo}>BlueBlog</div>
