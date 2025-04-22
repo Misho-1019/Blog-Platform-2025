@@ -9,7 +9,7 @@ export default function useAuth() {
         const optionWrapper = {
             ...options,
             headers: {
-                'X-Authorization': authData.accessToken,
+                'X-Authorization': authData.token,
                 ...options.headers,
             }
         }
@@ -20,7 +20,7 @@ export default function useAuth() {
     return {
         ...authData,
         userId: authData._id,
-        isAuthenticated: !!authData.accessToken,
+        isAuthenticated: !!authData.token,
         request: {
             get: requestWrapper.bind(null, 'GET'),
             post: requestWrapper.bind(null, 'POST'),

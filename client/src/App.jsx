@@ -5,6 +5,7 @@ import Login from "./components/login/Login"
 import Register from "./components/register/Register"
 import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
+import AuthGuard from "./components/guards/AuthGuard"
 
 function App() {
 
@@ -16,9 +17,9 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/logout" element={<Logout />} />
+                        <Route element={<AuthGuard />}>
+                            <Route path="/logout" element={<Logout />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>
