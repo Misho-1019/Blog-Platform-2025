@@ -34,23 +34,25 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-    const { accessToken, userLogoutHandler } = useContext(UserContext);
+    const { token, userLogoutHandler } = useContext(UserContext);
 
     useEffect(() => {
-        if (!accessToken) {
+        if (!token) {
             return;
         }
 
         const options = {
             headers: {
-                'X-Authorization': accessToken,
+                'X-Authorization': token,
             }
         }
-        
-        const logout = () => request.get(`${baseUrl}/logout`, null, options)
-    }, [accessToken, userLogoutHandler])
 
+        request.get(`${baseUrl}/logout`, null, options)
+            .then(userLogoutHandler)
+
+    }, [token, userLogoutHandler])
+    
     return {
-        isLoggedOut: !!accessToken,
+        isLoggedOut: !!token,
     }
 }
