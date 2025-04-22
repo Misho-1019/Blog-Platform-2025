@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 import routes from "./routes.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
@@ -32,6 +33,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(authMiddleware)
 app.use(helmet())
+app.use(rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+}))
 
 app.use(routes)
 
