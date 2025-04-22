@@ -3,8 +3,6 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from "./components/login/Login"
 import Register from "./components/register/Register"
-import { useState } from "react"
-import { UserContext } from "./context/UserContext"
 import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
 

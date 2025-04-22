@@ -34,7 +34,7 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-    const { accessToken, userLogoutHandler } = useContext(UserContext)
+    const { accessToken, userLogoutHandler } = useContext(UserContext);
 
     useEffect(() => {
         if (!accessToken) {
@@ -43,7 +43,7 @@ export const useLogout = () => {
 
         const options = {
             headers: {
-                'X-Authorization': accessToken
+                'X-Authorization': accessToken,
             }
         }
         

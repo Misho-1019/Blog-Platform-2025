@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useRegister } from '../../api/authApi';
 import styles from './Register.module.css';
-import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router';
+import { UserContext } from '../../context/UserContext';
 
 export default function Register() {
     const { register } = useRegister()
