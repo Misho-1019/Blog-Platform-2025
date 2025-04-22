@@ -13,9 +13,11 @@ const request = async (method, url, data, options = {}) => {
             body: JSON.stringify(data),
         }
     }
-    console.log(url);
-    console.log(options);
-    
+
+    options = {
+        credentials: 'include',
+        ...options,
+    }
 
     const response = await fetch(url, options)
     const responseContentType = response.headers.get('Content-Type')
