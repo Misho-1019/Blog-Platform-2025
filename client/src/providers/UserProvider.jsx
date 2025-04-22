@@ -7,7 +7,7 @@ export function UserProvider({
     const [authData, setAuthData] = usePersistedState('auth', {})
 
     const userLoginHandler = (resultData) => {
-        setAuthData(resultData)
+        setAuthData(resultData)       
     }
 
     const userLogoutHandler = () => {

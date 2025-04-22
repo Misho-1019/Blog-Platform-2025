@@ -1,12 +1,9 @@
-import { useContext } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router';
-import { UserContext } from '../../context/UserContext';
+import useAuth from '../../hooks/useAuth';
 
 export default function Header() {
-    const { email } = useContext(UserContext)
-    console.log(email);
-    
+    const { email } = useAuth();
     
     return (
         <header className={styles.header}>
