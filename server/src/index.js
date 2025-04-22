@@ -2,11 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import routes from "./routes.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 
 const app = express();
+dotenv.config();
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -14,7 +16,7 @@ app.use(cors({
 }));
 
 try {
-    const uri = 'mongodb+srv://mikail:Mvt12345@cluster0.0jspcgh.mongodb.net/Blog-Platform-2025?retryWrites=true&w=majority&appName=Cluster0'
+    const uri = process.env.MONGO_URI
     await mongoose.connect(uri)
 
     console.log('DB Connected Successfully!');
