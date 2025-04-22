@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import helmet from "helmet";
 
 import routes from "./routes.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
@@ -30,6 +31,7 @@ const port = process.env.PORT || 3030;
 app.use(express.json())
 app.use(cookieParser())
 app.use(authMiddleware)
+app.use(helmet())
 
 app.use(routes)
 
