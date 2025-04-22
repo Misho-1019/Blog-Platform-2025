@@ -9,11 +9,7 @@ export default function Register() {
     const { userLoginHandler } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const registerHandler = async (e) => {
-        e.preventDefault() 
-
-        const formData = new FormData(e.target)
-
+    const registerHandler = async (formData) => {
         const { email, password } = Object.fromEntries(formData)
 
         const authData = await register( email, password);
@@ -27,7 +23,7 @@ export default function Register() {
         <div className={styles.container}>
             <div className={styles.formBox}>
                 <h2>Register</h2>
-                <form onSubmit={registerHandler}>
+                <form action={registerHandler}>
                     <input type="email" name="email" placeholder="Email" required />
                     <input type="password" name="password" placeholder="Password" required />
                     <button type="submit">Sign Up</button>

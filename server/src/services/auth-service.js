@@ -11,9 +11,9 @@ export default {
         if (userCount > 0) {
             throw new Error('User already exists!')
         }
-        
+
         const user = await User.create(authData)
-        
+
         const payload = {
             id: user.id,
             email: user.email,
@@ -23,10 +23,8 @@ export default {
 
         return {
             token,
-            user: {
-                _id: user._id,
-                email: user.email,
-            }
+            _id: user._id,
+            email: user.email,
         }
     },
     async login(email, password) {
@@ -51,10 +49,8 @@ export default {
 
         return {
             token,
-            user: {
-                _id: user._id,
-                email: user.email,
-            }
+            _id: user._id,
+            email: user.email,
         };
     },
 }

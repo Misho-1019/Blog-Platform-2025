@@ -13,7 +13,7 @@ export default function Login() {
         const values = Object.fromEntries(formData)
 
         const authData = await login(values.email, values.password)
-
+        
         userLoginHandler(authData);
 
         navigate('/')
