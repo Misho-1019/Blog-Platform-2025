@@ -15,6 +15,8 @@ authController.post('/register',
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     }
+
+    
     const authData = req.body;
 
     try {
@@ -38,6 +40,8 @@ authController.post('/login',
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     }
+
+
     const { email, password } = req.body;
 
     try {

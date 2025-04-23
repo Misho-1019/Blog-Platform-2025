@@ -4,10 +4,10 @@ import useAuth from '../../hooks/useAuth';
 
 export default function Header() {
     const { email } = useAuth();
-    
+
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>BlueBlog</div>
+            <div className={styles.logo}>Pulse Stream</div>
             <nav className={styles.nav}>
                 {email
                     ? (
