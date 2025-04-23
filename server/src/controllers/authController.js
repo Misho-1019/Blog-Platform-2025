@@ -1,9 +1,20 @@
 import { Router } from "express";
+import { body, validationResult } from "express-validator";
 import authService from "../services/auth-service.js";
 
 const authController = Router();
 
-authController.post('/register', async (req, res) => {
+authController.post('/register',
+    [
+        body('email').isEmail().withMessage('Invalid email format!'),
+        body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters!'),
+    ],
+    async (req, res) => {
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
     const authData = req.body;
 
     try {
@@ -12,11 +23,21 @@ authController.post('/register', async (req, res) => {
 
         res.status(201).json(result);
     } catch (err) {
-        res.status(401).json({ message: err.message }).end()
+        res.status(409).json({ message: err.message }).end()
     }
 })
 
-authController.post('/login', async (req, res) => {
+authController.post('/login',
+    [
+        body('email').isEmail().withMessage('Email must be valid!'),
+        body('password').notEmpty().withMessage('Password is required!')
+    ], 
+    async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
     const { email, password } = req.body;
 
     try {
