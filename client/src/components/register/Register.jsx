@@ -10,9 +10,17 @@ export default function Register() {
     const navigate = useNavigate()
 
     const registerHandler = async (formData) => {
-        const { email, password } = Object.fromEntries(formData)
+        const { username, email, password } = Object.fromEntries(formData)
 
-        const authData = await register( email, password);
+        const confirmPassword = formData.get('re-password')
+
+        if (password !== confirmPassword) {
+            console.log('Passwords mismatch!');
+            
+            return;
+        }
+
+        const authData = await register( username, email, password );
         
         userLoginHandler(authData)
         
@@ -24,8 +32,10 @@ export default function Register() {
             <div className={styles.formBox}>
                 <h2>Register</h2>
                 <form action={registerHandler}>
+                    <input type="text" name="username" placeholder="Username" required />
                     <input type="email" name="email" placeholder="Email" required />
                     <input type="password" name="password" placeholder="Password" required />
+                    <input type="password" name="re-password" placeholder="Repeat Password" required />
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
