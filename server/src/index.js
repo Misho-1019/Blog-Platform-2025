@@ -31,7 +31,6 @@ const port = process.env.PORT || 3030;
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(authMiddleware)
 app.use(helmet())
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -39,5 +38,6 @@ app.use(rateLimit({
 }))
 
 app.use(routes)
+app.use(authMiddleware)
 
 app.listen(port, () => console.log(`Server is listening on http://localhost:${port}...`))
