@@ -5,6 +5,6 @@ import spotifyRouter from "./controllers/spotifyController.js";
 const routes = Router();
 
 routes.use('/auth', authController)
-routes.use(spotifyRouter)
+routes.use('/spotify', spotifyRouter)
 
 export default routes;
