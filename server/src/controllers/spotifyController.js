@@ -7,7 +7,7 @@ spotifyRouter.get('/callback', async (req, res) => {
 
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-    const redirectUri = 'https://localhost:3030/callback';
+    const redirectUri = 'http://127.0.0.1:5173/callback';
 
     try {
         const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -38,6 +38,33 @@ spotifyRouter.get('/callback', async (req, res) => {
     } catch (err) {
         console.error('Fetch error:', err);
         res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+spotifyRouter.get('/songs', async (req, res) => {
+    const accessToken = req.query.access_token;
+
+    if (!accessToken) {
+        return res.status(400).json({ error: 'Access token required!' })
+    }
+
+    try {
+        const response = await fetch('https://api.spotify.com/v1/me/top/tracks', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            },
+        })
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            return res.status(response.status).json(data)
+        }
+
+        res.json(data)
+    } catch (err) {
+        console.error('Error fetching songs:', err);
+        res.status(500).json({ error: 'Failed to fetch songs from spotify' })
     }
 })
 
