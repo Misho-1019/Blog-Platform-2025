@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './SearchPage.module.css';
+import SongItem from "./item/SongItem";
 
 export default function SearchPage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -59,14 +60,8 @@ export default function SearchPage() {
 
             {loading && <p className={styles.loading}>Loading...</p>}
 
-            <ul>
-                {songs.map((song) => (
-                    <li key={song.id}>
-                        <img src={song.album.images[0].url} alt={song.name} width={50}/>
-                        <div>{song.name}</div>
-                        <div>{song.artists[0].name}</div>
-                    </li>
-                ))}
+            <ul className={styles.songList}>
+                {songs.map((song) => <SongItem key={song.id} {...song} />)}
             </ul>
         </div>
     )
