@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './SearchPage.module.css';
 
 export default function SearchPage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -33,8 +34,7 @@ export default function SearchPage() {
             }
 
             const data = await response.json()
-            console.log(data.tracks.items);
-            
+
             setSongs(data.tracks.items)
             setLoading(false)
         } catch (err) {
@@ -44,12 +44,20 @@ export default function SearchPage() {
     }
 
     return (
-        <div>
-            <h1>Search for Songs</h1>
-            <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder="Search for songs, artists, albums..."/>
-            <button onClick={handleSearch}>Search</button>
+        <div className={styles.container}>
+            <h1 className={styles.heading}>Search for Songs</h1>
+            <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Search for songs, artists, albums..."
+                className={styles.input}
+            />
+            <button onClick={handleSearch} className={styles.button}>
+                Search
+            </button>
 
-            {loading && <p>Loading...</p>}
+            {loading && <p className={styles.loading}>Loading...</p>}
 
             <ul>
                 {songs.map((song) => (
