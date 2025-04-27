@@ -56,7 +56,7 @@ export default function SongDetails() {
 
             <div className={styles.infoSection}>
                 <h1 className={styles.songTitle}>{song.name}</h1>
-                <h2 className={styles.artistName}>{song.artists[0].name}</h2>
+                <h2 className={styles.artistName}>{song.artists.length > 1 ? (`${song.artists[0].name}, ${song.artists[1].name}`) : song.artists[0].name}</h2>
                 <p className={styles.albumName}>From album: {song.album.name}</p>
 
                 <div className={styles.extraInfo}>
@@ -89,6 +89,9 @@ export default function SongDetails() {
                 <div className={styles.actions}>
                     <Link to="/search" className={styles.backButton}>⬅ Back</Link>
                     <button onClick={like} className={styles.likeButton}>❤️ {likes < 2 ? 'Like' : 'Likes'}: {likes}</button>
+                    <Link to={`/${songId}/comments`} className={styles.commentsButton}>
+                        💬 Comments
+                    </Link>
                 </div>
             </div>
         </div>
