@@ -8,9 +8,7 @@ const SpotifyCallback = () => {
             fetch(`http://localhost:3030/spotify/callback?code=${code}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log('Access token:', data.access_token);
-                    // You can now save the token in state, context, or localStorage
-
+                    
                     if (data.access_token) {
                         localStorage.setItem('spotify_access_token', data.access_token)
                     }
@@ -21,7 +19,7 @@ const SpotifyCallback = () => {
 
     return (
         <div>
-            <h2>Connecting to Spotify...</h2>
+            <h2>Connected to Spotify</h2>
         </div>
     );
 };

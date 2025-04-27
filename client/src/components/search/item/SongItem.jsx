@@ -20,7 +20,7 @@ export default function SongItem({
                 <div className={styles.artistName}>{artists[0].name}</div>
                 <div className={styles.albumName}>{album.name}</div>
             </div>
-            <Link to='' >Details</Link>
+            <Link to={`/${id}/details`} >Details</Link>
         </li>
     )
 }

@@ -10,6 +10,7 @@ import GuestGuard from "./components/guards/GuestGuard"
 import Catalog from "./components/catalog/Catalog"
 import SpotifyCallback from "./components/callback/SpotifyCallback"
 import SearchPage from "./components/search/SearchPage"
+import SongDetails from "./components/details/SongDetails"
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                             <Route path="/songs" element={<Catalog />} />
                             <Route path="/callback" element={<SpotifyCallback />} />
                             <Route path="/search" element={<SearchPage />} />
+                            <Route path="/:songId/details" element={<SongDetails />} />
                             <Route path="/logout" element={<Logout />} />
                         </Route>
                         <Route element={<GuestGuard />}>
