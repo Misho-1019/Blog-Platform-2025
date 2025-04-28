@@ -7,7 +7,6 @@ import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
 import AuthGuard from "./components/guards/AuthGuard"
 import GuestGuard from "./components/guards/GuestGuard"
-import Catalog from "./components/catalog/Catalog"
 import SpotifyCallback from "./components/callback/SpotifyCallback"
 import SearchPage from "./components/search/SearchPage"
 import SongDetails from "./components/details/SongDetails"
@@ -24,7 +23,6 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route element={<AuthGuard />}>
-                            <Route path="/songs" element={<Catalog />} />
                             <Route path="/callback" element={<SpotifyCallback />} />
                             <Route path="/search" element={<SearchPage />} />
                             <Route path="/:songId/details" element={<SongDetails />} />
